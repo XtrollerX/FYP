@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School App - Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f0ff, #ffffff);
+            color: #333;
+        }
+        header {
+            background: #0059b3;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h1 {
+            font-size: 40px;
+            color: #003d80;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #444;
+            max-width: 650px;
+            margin: auto;
+        }
+        .login-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: #007bff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .login-btn:hover {
+            background: #005fcc;
+        }
+        .features-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .features-section h2 {
+            font-size: 28px;
+            color: #003d80;
+            margin-bottom: 20px;
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            width: 280px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            font-size: 22px;
+            color: #0059b3;
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background: #f0f4f8;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>School App</header>
+
+    <div class="hero">
+        <h1>Your School. Your Schedule. Simplified.</h1>
+        <p>Easily access your course schedules, instructor information, and important announcements with a modern, user-friendly interface.</p>
+        <a href="login.html" class="login-btn">Login</a>
+    </div>
+
+    <div class="features-section">
+        <h2>Features</h2>
+        <div class="features">
+            <div class="card">
+                <h3>📚 View Schedules</h3>
+                <p>Check your daily and weekly class schedule anytime.</p>
+            </div>
+            <div class="card">
+                <h3>🧑‍🏫 Teacher Info</h3>
+                <p>See instructor profiles and class-related information.</p>
+            </div>
+            <div class="card">
+                <h3>🔔 Notifications</h3>
+                <p>Get important school announcements instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 School App | All Rights Reserved
+    </footer>
+</body>
+</html>
