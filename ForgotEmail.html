@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Email</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            width: 400px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #0078ff;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-primary { 
+            background: #0078ff; 
+            color: white;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background: #0066dd;
+        }
+        .back-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .back-link a {
+            color: #0078ff;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .email-display {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Forgot Email?</h2>
+        <p class="subtitle">Enter your registered phone number and we'll help you recover your email address.</p>
+
+        <div id="successMessage" class="success-message">
+            Email found! Your registered email is:
+            <div class="email-display" id="emailDisplay"></div>
+        </div>
+
+        <form id="forgotEmailForm">
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
+            </div>
+
+            <div class="input-group">
+                <label for="studentId">Student ID (Optional)</label>
+                <input type="text" id="studentId" name="studentId" placeholder="Enter your student ID" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Recover Email</button>
+        </form>
+
+        <div class="back-link">
+            <a href="manual-login.html">← Back to Login</a>
+        </div>
+    </div>
+
+    <script>
+        const forgotEmailForm = document.getElementById('forgotEmailForm');
+        const successMessage = document.getElementById('successMessage');
+        const emailDisplay = document.getElementById('emailDisplay');
+
+        forgotEmailForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phone = document.getElementById('phone').value;
+            const studentId = document.getElementById('studentId').value;
+
+            // TODO: Add email recovery logic here
+            // This would typically involve sending a request to a backend API
+            console.log('Email recovery requested for phone:', phone, 'student ID:', studentId);
+            
+            // Simulate finding email (mask it for privacy)
+            const recoveredEmail = 'user****@school.edu'; // This would come from the backend
+            
+            // Show success message with recovered email
+            emailDisplay.textContent = recoveredEmail;
+            successMessage.style.display = 'block';
+            forgotEmailForm.style.display = 'none';
+            
+            // User can then use this email to login
+        });
+    </script>
+</body>
+</html>

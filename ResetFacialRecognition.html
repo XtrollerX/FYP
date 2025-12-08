@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reset Facial Recognition</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: #ffffff;
+            width: 450px;
+            max-width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            transition: all 0.3s;
+        }
+        .step.active {
+            background: #0078ff;
+            width: 30px;
+            border-radius: 6px;
+        }
+        .step.completed {
+            background: #28a745;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #0078ff;
+        }
+        video {
+            width: 100%;
+            height: 280px;
+            background: #000;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            display: none;
+        }
+        video.active {
+            display: block;
+        }
+        .instruction-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0078ff;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+            border-radius: 5px;
+        }
+        .instruction-box h4 {
+            margin: 0 0 10px 0;
+            color: #0078ff;
+            font-size: 16px;
+        }
+        .instruction-box ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .instruction-box ul li {
+            margin-bottom: 5px;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-primary { 
+            background: #0078ff; 
+            color: white;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background: #0066dd;
+        }
+        .btn-secondary { 
+            background: #e0e0e0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .back-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .back-link a {
+            color: #0078ff;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #28a745;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reset Facial Recognition</h2>
+        
+        <div class="step-indicator">
+            <div class="step active" id="step1"></div>
+            <div class="step" id="step2"></div>
+            <div class="step" id="step3"></div>
+        </div>
+
+        <!-- Screen 1: Verification -->
+        <div class="screen active" id="screen1">
+            <p class="subtitle">To reset your facial recognition data, please verify your identity first.</p>
+
+            <form id="verificationForm">
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Verify Identity</button>
+            </form>
+
+            <div class="back-link">
+                <a href="login.html">← Back to Login</a>
+            </div>
+        </div>
+
+        <!-- Screen 2: Face Capture -->
+        <div class="screen" id="screen2">
+            <p class="subtitle">Now let's capture your new facial recognition data.</p>
+
+            <div class="instruction-box">
+                <h4>📸 Instructions:</h4>
+                <ul>
+                    <li>Position your face in the center of the frame</li>
+                    <li>Ensure good lighting on your face</li>
+                    <li>Remove glasses if possible</li>
+                    <li>Look directly at the camera</li>
+                </ul>
+            </div>
+
+            <video id="cameraPreview" autoplay playsinline></video>
+
+            <button class="btn btn-primary" id="captureBtn">Capture Face Data</button>
+            <button class="btn btn-secondary" onclick="goToScreen(1)">Back</button>
+        </div>
+
+        <!-- Screen 3: Success -->
+        <div class="screen" id="screen3">
+            <div class="success-icon">✓</div>
+            <h3 style="color: #28a745;">Success!</h3>
+            <p class="subtitle">Your facial recognition data has been successfully reset. You can now use facial recognition to login.</p>
+
+            <button class="btn btn-primary" onclick="window.location.href='login.html'">Go to Login</button>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById("cameraPreview");
+        let currentScreen = 1;
+
+        // Screen navigation
+        function goToScreen(screenNum) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            
+            // Show target screen
+            document.getElementById(`screen${screenNum}`).classList.add('active');
+            
+            // Update step indicator
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 < screenNum) {
+                    step.classList.add('completed');
+                } else if (index + 1 === screenNum) {
+                    step.classList.add('active');
+                }
+            });
+            
+            currentScreen = screenNum;
+            
+            // Start camera if on screen 2
+            if (screenNum === 2) {
+                startCamera();
+            } else if (video.srcObject) {
+                // Stop camera if leaving screen 2
+                video.srcObject.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        // Verification form
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // TODO: Add verification logic here
+            // This would typically involve verifying credentials with backend API
+            console.log('Verification attempt:', { email, password });
+            
+            // Simulate successful verification
+            setTimeout(() => {
+                goToScreen(2);
+            }, 500);
+        });
+
+        // Camera functions
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 },
+                        facingMode: 'user'
+                    } 
+                });
+                video.srcObject = stream;
+                video.classList.add('active');
+            } catch (err) {
+                alert("Camera access denied or unavailable.");
+                console.error(err);
+            }
+        }
+
+        // Capture button
+        document.getElementById('captureBtn').addEventListener('click', function() {
+            // TODO: Add face capture and processing logic here
+            // This would typically involve:
+            // 1. Capturing the video frame
+            // 2. Detecting face in the frame
+            // 3. Extracting facial features
+            // 4. Sending data to backend for storage
+            
+            console.log('Capturing face data...');
+            
+            // Simulate face capture process
+            this.disabled = true;
+            this.textContent = 'Processing...';
+            
+            setTimeout(() => {
+                // Stop camera
+                if (video.srcObject) {
+                    video.srcObject.getTracks().forEach(track => track.stop());
+                }
+                
+                // Show success screen
+                goToScreen(3);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

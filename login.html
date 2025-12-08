@@ -53,17 +53,21 @@
         <video id="cameraPreview" autoplay playsinline></video>
 
         <button class="btn btn-primary">Scan Face to Login</button>
-        <button class="btn btn-secondary">Use PIN / Password Instead</button>
+        <button class="btn btn-secondary" onclick="window.location.href='ManualLogin.html'">Use PIN / Password Instead</button>
         <button class="btn btn-secondary" onclick="window.location.href='admin.html'">
     Admin Login
 </button>
 
+
+        <div style="margin-top: 20px; font-size: 14px;">
+            <a href="ResetFacialRecognition.html" style="color: #0078ff; text-decoration: none;">Reset Facial Recognition</a>
+        </div>
     </div>
 
     <script>
         const video = document.getElementById("cameraPreview");
 
-        // Auto‑start camera when page loads
+        // Autoâ€‘start camera when page loads
         async function startCamera() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
