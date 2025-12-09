@@ -1,4 +1,5 @@
 run cmake-4.2.0-windows-x86_64.msi 
+download from: https://cmake.org/download/
 
 pip runs:
 python.exe -m pip install --upgrade pip
