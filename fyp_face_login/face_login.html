@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Face Login</title>
+</head>
+<body>
+  <h1>Face Login System</h1>
+
+  <p>Select an option to begin:</p>
+
+  <button id="chooseRegister">Register Face</button>
+  <button id="chooseLogin">Login With Face</button>
+
+  <br><br>
+
+  <video id="video" width="320" height="240" autoplay style="border:1px solid black; display:none;"></video>
+  <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+
+  <pre id="output"></pre>
+
+  <script>
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+    const output = document.getElementById("output");
+    const BACKEND_URL = "http://localhost:8000";
+
+    let mode = null;          // "register" or "login"
+    let stream = null;
+    let intervalLoop = null;  // interval ID for auto-capture
+
+    // Start webcam
+    async function startCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        video.style.display = "block";
+      } catch (err) {
+        output.textContent = "Error starting camera: " + err;
+      }
+    }
+
+    // Capture an image from video
+    function captureFrame() {
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL("image/jpeg");
+    }
+
+    // Auto handler for register / login
+    async function processFrame() {
+      if (!stream) return;
+
+      const imgData = captureFrame();
+      let endpoint = (mode === "register") ? "/api/register_face" : "/api/verify_face";
+
+      try {
+        const res = await fetch(BACKEND_URL + endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: imgData })
+        });
+
+        const json = await res.json();
+        output.textContent = JSON.stringify(json, null, 2);
+
+        // If successful, stop camera + interval
+        if (json.success) {
+          stopAll();
+          alert(
+            (mode === "register" ? "Registered new user: " : "Welcome back, ") +
+            json.user_id
+          );
+        }
+      } catch (err) {
+        console.log("Error:", err);
+      }
+    }
+
+    function stopAll() {
+      if (intervalLoop) clearInterval(intervalLoop);
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      video.style.display = "none";
+    }
+
+    // ---- Register button ----
+    document.getElementById("chooseRegister").onclick = async () => {
+      mode = "register";
+      output.textContent = "Mode: REGISTER\nStarting camera...";
+      await startCamera();
+
+      // every 1 second capture and send
+      intervalLoop = setInterval(processFrame, 1000);
+    };
+
+    // ---- Login button ----
+    document.getElementById("chooseLogin").onclick = async () => {
+      mode = "login";
+      output.textContent = "Mode: LOGIN\nStarting camera...";
+      await startCamera();
+
+      // every 1 second capture and send
+      intervalLoop = setInterval(processFrame, 1000);
+    };
+  </script>
+</body>
+</html>

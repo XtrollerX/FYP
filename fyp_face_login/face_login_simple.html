@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Face Login Test</title>
+</head>
+<body>
+  <h1>Face Login Test</h1>
+
+  <p>If you can see this text, the HTML file is loading correctly.</p>
+
+  <video id="video" width="320" height="240" autoplay style="border:1px solid black;"></video>
+  <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+
+  <div>
+    <button id="btnStart">Start Camera</button>
+    <button id="btnRegister">Register Face</button>
+    <button id="btnLogin">Login with Face</button>
+  </div>
+
+  <pre id="output"></pre>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const output = document.getElementById('output');
+    const BACKEND_URL = "http://localhost:8000";
+    let stream = null;
+
+    const TEST_USER_ID = "student01";
+
+    document.getElementById('btnStart').onclick = async () => {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+      } catch (err) {
+        output.textContent = "Error accessing camera: " + err;
+      }
+    };
+
+    function captureFrameAsDataURL() {
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL('image/jpeg');
+    }
+
+    document.getElementById('btnRegister').onclick = async () => {
+      if (!stream) {
+        output.textContent = "Start the camera first.";
+        return;
+      }
+      const imgData = captureFrameAsDataURL();
+
+      const res = await fetch(`${BACKEND_URL}/api/register_face`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: TEST_USER_ID, image: imgData })
+      });
+
+      const json = await res.json();
+      output.textContent = "REGISTER RESPONSE:\n" + JSON.stringify(json, null, 2);
+    };
+
+    document.getElementById('btnLogin').onclick = async () => {
+      if (!stream) {
+        output.textContent = "Start the camera first.";
+        return;
+      }
+      const imgData = captureFrameAsDataURL();
+
+      const res = await fetch(`${BACKEND_URL}/api/verify_face`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: imgData })
+      });
+
+      const json = await res.json();
+      output.textContent = "LOGIN RESPONSE:\n" + JSON.stringify(json, null, 2);
+
+      if (json.success) {
+        alert("Recognized user: " + json.user_id + " (distance: " + json.distance + ")");
+      }
+    };
+  </script>
+</body>
+</html>
