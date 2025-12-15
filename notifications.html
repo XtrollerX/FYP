@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notifications</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f0ff, #ffffff);
+            color: #333;
+        }
+        header {
+            background: #0059b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #003d80;
+            margin-bottom: 20px;
+        }
+        .notification {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .icon {
+            font-size: 28px;
+        }
+        .notification h3 {
+            margin: 0 0 8px 0;
+            color: #0059b3;
+            font-size: 18px;
+        }
+        .notification p {
+            margin: 0 0 6px 0;
+            color: #444;
+        }
+        .time {
+            font-size: 13px;
+            color: #777;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: #005fcc;
+        }
+    </style>
+</head>
+<body>
+    <header>Notifications</header>
+
+    <div class="container">
+        <h2>Recent Announcements</h2>
+
+        <div class="notification">
+            <div class="icon">🔔</div>
+            <div>
+                <h3>Class Cancellation</h3>
+                <p>Database Systems class on Wednesday has been cancelled.</p>
+                <span class="time">Posted 2 hours ago</span>
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="icon">📢</div>
+            <div>
+                <h3>Midterm Examination</h3>
+                <p>The midterm exam schedule has been released. Please check your student portal.</p>
+                <span class="time">Posted 1 day ago</span>
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="icon">📅</div>
+            <div>
+                <h3>Public Holiday Notice</h3>
+                <p>No classes will be held this Friday due to a public holiday.</p>
+                <span class="time">Posted 3 days ago</span>
+            </div>
+        </div>
+
+        <a href="home page.html" class="back-btn">← Back to Home</a>
+    </div>
+</body>
+</html>

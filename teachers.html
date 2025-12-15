@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Information</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f0ff, #ffffff);
+            color: #333;
+        }
+        header {
+            background: #0059b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #003d80;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .teachers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        .card h3 {
+            margin: 10px 0 5px 0;
+            color: #0059b3;
+        }
+        .card p {
+            margin: 6px 0;
+            font-size: 15px;
+            color: #444;
+        }
+        .email {
+            font-size: 14px;
+            color: #007bff;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: #005fcc;
+        }
+    </style>
+</head>
+<body>
+    <header>Teacher Information</header>
+
+    <div class="container">
+        <h2>Meet Our Instructors</h2>
+
+        <div class="teachers">
+            <div class="card">
+                <div class="avatar">👩‍🏫</div>
+                <h3>Dr. Tan Mei Ling</h3>
+                <p><strong>Course:</strong> Database Systems</p>
+                <p><strong>Office:</strong> Block B, Room 214</p>
+                <p class="email">tan.meiling@school.edu</p>
+            </div>
+
+            <div class="card">
+                <div class="avatar">👨‍🏫</div>
+                <h3>Prof. Lee Wei Jun</h3>
+                <p><strong>Course:</strong> Operating Systems</p>
+                <p><strong>Office:</strong> Block A, Room 305</p>
+                <p class="email">lee.weijun@school.edu</p>
+            </div>
+
+            <div class="card">
+                <div class="avatar">👨‍🏫</div>
+                <h3>Dr. Smith Collins</h3>
+                <p><strong>Course:</strong> Artificial Intelligence</p>
+                <p><strong>Office:</strong> Block D, Room 112</p>
+                <p class="email">smithcollins@school.edu</p>
+            </div>
+
+            <div class="card">
+                <div class="avatar">👩‍🏫</div>
+                <h3>Ms. Wong Siew Yan</h3>
+                <p><strong>Course:</strong> Software Engineering</p>
+                <p><strong>Office:</strong> Block C, Room 220</p>
+                <p class="email">wong.siewyan@school.edu</p>
+            </div>
+        </div>
+
+        <a href="home page.html" class="back-btn">← Back to Home</a>
+    </div>
+</body>
+</html>

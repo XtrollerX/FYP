@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Schedule</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f0ff, #ffffff);
+            color: #333;
+        }
+        header {
+            background: #0059b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #003d80;
+            margin-bottom: 10px;
+        }
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .schedule-table th,
+        .schedule-table td {
+            padding: 15px;
+            text-align: center;
+        }
+        .schedule-table th {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .schedule-table tr:nth-child(even) {
+            background: #f5f9ff;
+        }
+        .schedule-table td {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: #005fcc;
+        }
+    </style>
+</head>
+<body>
+    <header>Student Schedule</header>
+
+    <div class="container">
+        <div class="student-info">
+            <h2>Student Information</h2>
+            <p><strong>Name:</strong> John Lim</p>
+            <p><strong>Student ID:</strong> 12345678</p>
+            <p><strong>Programme:</strong> Computer Science</p>
+        </div>
+
+        <h2>Weekly Schedule</h2>
+        <table class="schedule-table">
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Course</th>
+                <th>Room</th>
+                <th>Instructor</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td>9:00 - 11:00</td>
+                <td>Data Structures</td>
+                <td>Hall A2</td>
+                <td>Dr. Smith</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>10:00 - 12:00</td>
+                <td>Operating Systems</td>
+                <td>Room A3</td>
+                <td>Prof. Lee</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>2:00 - 4:00</td>
+                <td>Database Systems</td>
+                <td>Room B1</td>
+                <td>Dr. Tan</td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>11:00 - 1:00</td>
+                <td>Software Engineering</td>
+                <td>Room C2</td>
+                <td>Ms. Wong</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>9:00 - 10:30</td>
+                <td>Artificial Intelligence</td>
+                <td>Room D4</td>
+                <td>Dr. Tan</td>
+            </tr>
+        </table>
+
+        <a href="home page.html" class="back-btn">← Back to Home</a>
+    </div>
+</body>
+</html>
